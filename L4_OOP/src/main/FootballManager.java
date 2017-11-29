@@ -1,5 +1,6 @@
 package main;
 
+import forms.TeamForm;
 import forms.VenueForm;
 import objects.Player;
 import objects.Team;
@@ -25,6 +26,7 @@ public class FootballManager {
     public static void main(String[] args) {
         populateLists();
         //PlayerForm playerForm = new PlayerForm(PlayerStorage.getPlayer("VER9568"));
-        VenueForm venueForm = new VenueForm(null);
+        //VenueForm venueForm = new VenueForm(null);
+        TeamForm teamForm = new TeamForm(null);
     }
 }

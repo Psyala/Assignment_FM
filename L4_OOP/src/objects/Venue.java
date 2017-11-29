@@ -19,7 +19,7 @@ public class Venue {
             return null;
         }
         String[] array = venueString.split("#");
-        return new Venue(array[0], array[1]);
+        return new Venue(array[1], array[0]);
     }
 
     @Override

@@ -26,6 +26,24 @@ public class VenueForm extends InputForm {
         super.initialise(venue, mainPanel, saveButton, cancelButton);
     }
 
+    public VenueForm(Venue venue, TeamForm teamForm) {
+        this.venue = venue;
+        super.initialise(venue, mainPanel, null, cancelButton);
+        saveButton.addActionListener(e -> {
+            saveAction();
+            teamForm.populateVenues();
+        });
+    }
+
+    public VenueForm(Venue venue, LeagueForm leagueForm) {
+        this.venue = venue;
+        super.initialise(venue, mainPanel, null, cancelButton);
+        saveButton.addActionListener(e -> {
+            saveAction();
+            leagueForm.populateVenues();
+        });
+    }
+
     @Override
     protected void initialiseComponents() {
         if (venue != null) {
@@ -56,7 +74,7 @@ public class VenueForm extends InputForm {
                     null, "Venue " + venue.getVenueCode() + " saved.", "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            FootballManager.populateLists();
+            FootballManager.initialiseData();
             frame.dispose();
         } else {
             JOptionPane.showMessageDialog(

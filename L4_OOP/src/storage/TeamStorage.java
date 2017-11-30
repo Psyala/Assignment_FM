@@ -7,11 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TeamStorage extends StorageRetriever {
+    //Stores list of teams into properties
     private static void storeTeamsList(List<String> teamsList) {
         String stringList = String.join(",", teamsList);
         StorageRetriever.setPropertyValue("teamsList", stringList);
     }
 
+    //Adds a team into the team list
     private static void addPlayerToList(Team team) {
         String teamCode = team.getTeamCode();
         List<String> list = getTeamsList();
@@ -21,6 +23,7 @@ public class TeamStorage extends StorageRetriever {
         }
     }
 
+    //Retreive the team list from properties
     public static List<String> getTeamsList() {
         String teams = getPropertyValue("teamsList", "");
         if (teams.isEmpty()) {
@@ -30,6 +33,7 @@ public class TeamStorage extends StorageRetriever {
         }
     }
 
+    //Get a singular team from properties by teamCode
     public static Team getTeam(String teamCode) {
         String teamString = StorageRetriever.getPropertyValue(teamCode, "");
         if (teamString.isEmpty()) {
@@ -39,11 +43,13 @@ public class TeamStorage extends StorageRetriever {
         }
     }
 
+    //Store a singular team into properties by teamCode
     public static void storeTeam(Team team) {
         StorageRetriever.setPropertyValue(team.getTeamCode(), team.toString());
         addPlayerToList(team);
     }
 
+    //Retrieve a list of all Teams from properties
     public static List<Team> retrieveTeams() {
         List<Team> teamList = new ArrayList<>();
         List<String> teamCodeList = getTeamsList();

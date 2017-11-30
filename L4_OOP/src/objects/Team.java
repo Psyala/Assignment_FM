@@ -25,6 +25,7 @@ public class Team {
         this.venue = venue;
     }
 
+    //Converts a Team string back to a Team object
     public static Team fromString(String teamString) {
         String[] array = teamString.split("#");
 
@@ -40,6 +41,7 @@ public class Team {
     }
 
     @Override
+    //Converts Team object to a string of teamName#teamCode#playerList#venueCode
     public String toString() {
         List<String> playerCodes = new ArrayList<>();
         for (Player player : players) {
@@ -49,24 +51,13 @@ public class Team {
         return teamName + "#" + teamCode + "#" + playerList + "#" + venue.getVenueCode();
     }
 
+    //Creates team code of 123ABC
     private String createTeamCode() {
-        return String.valueOf((int) (Math.random() * 900) + 100) + teamName.substring(0, 3).toUpperCase();
+        return String.valueOf((int) (Math.random() * 900) + 100) + teamName.replace(" ", "").substring(0, 3).toUpperCase();
     }
 
     public void setPlayers(List<Player> players) {
         this.players = players;
-    }
-
-    public void addPlayer(Player player) {
-        if (players.size() < 21) {
-            players.add(player);
-        }
-    }
-
-    public void removePlayer(Player player) {
-        if (players.contains(player)) {
-            players.remove(player);
-        }
     }
 
     public List<Player> getPlayers() {

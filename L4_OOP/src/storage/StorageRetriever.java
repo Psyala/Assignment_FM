@@ -9,11 +9,12 @@ import java.util.Properties;
 
 public class StorageRetriever {
 
-    protected static String PROPERTIES_FILE_NAME = "config.properties";
+    private static final String PROPERTIES_FILE_NAME = "config.properties";
     private static final String PROPERTIES_FILE_PATH = FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + "\\main.FootballManager\\";
     private static final String PROPERTIES_FULL_PATH = PROPERTIES_FILE_PATH + PROPERTIES_FILE_NAME;
 
-    protected static void ensureFilesExist() {
+    //Makes sure that the file path for the properties files exists and that the file itself exists - if they dont it creates them
+    private static void ensureFilesExist() {
         try {
             if (!Files.exists(Paths.get(PROPERTIES_FILE_PATH))) {
                 Files.createDirectories(Paths.get(PROPERTIES_FILE_PATH));
@@ -26,7 +27,8 @@ public class StorageRetriever {
         }
     }
 
-    protected static Properties getProperties() {
+    //Loads all properties in file to memory object
+    private static Properties getProperties() {
         ensureFilesExist();
 
         try {
@@ -39,7 +41,8 @@ public class StorageRetriever {
         }
     }
 
-    protected static boolean storeProperties(Properties properties) {
+    //Stores all properties in memory object to file
+    private static boolean storeProperties(Properties properties) {
         try {
             properties.store(new FileWriter(PROPERTIES_FULL_PATH), "Storing Properties");
             return true;
@@ -49,6 +52,7 @@ public class StorageRetriever {
         }
     }
 
+    //Deletes a property from memory object
     protected static boolean deleteProperty(String property) {
         Properties properties = getProperties();
         if (properties.containsKey(property)) {
@@ -59,7 +63,8 @@ public class StorageRetriever {
         }
     }
 
-    protected static String getPropertyValue(String property, String defaultValue) {
+    //Gets a property value from memory object
+    static String getPropertyValue(String property, String defaultValue) {
         Properties properties = getProperties();
         if (properties.containsKey(property)) {
             return properties.getProperty(property, defaultValue);
@@ -67,9 +72,10 @@ public class StorageRetriever {
         return defaultValue;
     }
 
-    protected static boolean setPropertyValue(String property, String value) {
+    //Sets a property value in the memory object
+    static void setPropertyValue(String property, String value) {
         Properties properties = getProperties();
         properties.setProperty(property, value);
-        return storeProperties(properties);
+        storeProperties(properties);
     }
 }

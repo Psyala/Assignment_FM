@@ -7,11 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayerStorage extends StorageRetriever {
+    //Stores list of players into properties
     private static void storePlayersList(List<String> playersList) {
         String stringList = String.join(",", playersList);
         StorageRetriever.setPropertyValue("playerList", stringList);
     }
 
+    //Adds a player to the list of players
     private static void addPlayerToList(Player player) {
         String playerCode = player.getPlayerCode();
         List<String> list = getPlayerList();
@@ -21,6 +23,7 @@ public class PlayerStorage extends StorageRetriever {
         }
     }
 
+    //Gets the list of players from properties
     public static List<String> getPlayerList() {
         String players = getPropertyValue("playerList", "");
         if (players.isEmpty()) {
@@ -30,6 +33,7 @@ public class PlayerStorage extends StorageRetriever {
         }
     }
 
+    //Gets a single player from properties by their playercode
     public static Player getPlayer(String playerCode) {
         String playerString = StorageRetriever.getPropertyValue(playerCode, "");
         if (playerString.isEmpty()) {
@@ -39,11 +43,13 @@ public class PlayerStorage extends StorageRetriever {
         }
     }
 
+    //Store a single player into properties by their playercode
     public static void storePlayer(Player player) {
         StorageRetriever.setPropertyValue(player.getPlayerCode(), player.toString());
         addPlayerToList(player);
     }
 
+    //Retireve a list of all players from properties
     public static List<Player> retrievePlayers() {
         List<Player> playerList = new ArrayList<>();
         List<String> playerCodeList = getPlayerList();

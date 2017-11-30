@@ -31,6 +31,15 @@ public class PlayerForm extends InputForm {
         super.initialise(player, mainPanel, saveButton, cancelButton);
     }
 
+    public PlayerForm(Player player, LeagueForm leagueForm) {
+        this.player = player;
+        super.initialise(player, mainPanel, null, cancelButton);
+        saveButton.addActionListener(e -> {
+            saveAction();
+            leagueForm.populatePlayers();
+        });
+    }
+
     @Override
     protected void initialiseComponents() {
         if (player != null) {
@@ -66,7 +75,7 @@ public class PlayerForm extends InputForm {
                     null, "Player " + player.getPlayerCode() + " saved.", "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            FootballManager.populateLists();
+            FootballManager.initialiseData();
             frame.dispose();
         } else {
             JOptionPane.showMessageDialog(

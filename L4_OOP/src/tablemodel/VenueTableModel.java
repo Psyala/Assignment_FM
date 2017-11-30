@@ -1,20 +1,20 @@
 package tablemodel;
 
-import objects.Player;
+import objects.Venue;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerTableModel extends TableModel {
-    public PlayerTableModel(List<Player> data) {
+public class VenueTableModel extends TableModel {
+    public VenueTableModel(List<Venue> data) {
         super(data);
     }
 
     @Override
     /*
     Creates a DefaultTableModel with:
-    Header & Data: Player Code, Player Name, Injured
+    Header & Data: Venue Code, Venue Name
      */
     public DefaultTableModel create() {
         DefaultTableModel model = new DefaultTableModel(createTableHeader(), 0) {
@@ -25,11 +25,10 @@ public class PlayerTableModel extends TableModel {
         };
 
         for (Object o : data) {
-            Player player = (Player) o;
+            Venue venue = (Venue) o;
             List<Object> row = new ArrayList<>();
-            row.add(player.getPlayerCode());
-            row.add(player.getFullName());
-            row.add(player.getInjured());
+            row.add(venue.getVenueCode());
+            row.add(venue.getVenueName());
             model.addRow(createRowObject(row));
         }
 
@@ -38,6 +37,6 @@ public class PlayerTableModel extends TableModel {
 
     @Override
     String[] createTableHeader() {
-        return new String[]{"Player Code", "Player Name", "Injured"};
+        return new String[]{"Venue Code", "Venue Name"};
     }
 }

@@ -48,15 +48,20 @@ public class TeamForm extends InputForm {
     public TeamForm(Team team) {
         this.team = team;
         super.initialise(team, contentPanel, saveButton, cancelButton);
-        addVenueButton.addActionListener(e -> {
-            new VenueForm(null);
-            populateVenues();
-        });
-        addButton.addActionListener(e -> {
-            moveSelectedPlayer(playerListTable, teamPlayerListTable);
-        });
-        removeButton.addActionListener(e -> {
-            moveSelectedPlayer(teamPlayerListTable, playerListTable);
+        addVenueButton.addActionListener(e -> new VenueForm(null, this));
+        addButton.addActionListener(e -> moveSelectedPlayer(playerListTable, teamPlayerListTable));
+        removeButton.addActionListener(e -> moveSelectedPlayer(teamPlayerListTable, playerListTable));
+    }
+
+    public TeamForm(Team team, LeagueForm leagueForm) {
+        this.team = team;
+        super.initialise(team, contentPanel, null, cancelButton);
+        addVenueButton.addActionListener(e -> new VenueForm(null, this));
+        addButton.addActionListener(e -> moveSelectedPlayer(playerListTable, teamPlayerListTable));
+        removeButton.addActionListener(e -> moveSelectedPlayer(teamPlayerListTable, playerListTable));
+        saveButton.addActionListener(e -> {
+            saveAction();
+            leagueForm.populateTeams();
         });
     }
 
@@ -65,14 +70,15 @@ public class TeamForm extends InputForm {
         if (selectedRow >= 0) {
             String playerCode = (String) fromTable.getValueAt(selectedRow, 0);
             String playerName = (String) fromTable.getValueAt(selectedRow, 1);
+            String injured = String.valueOf(fromTable.getValueAt(selectedRow, 2));
             ((DefaultTableModel) fromTable.getModel()).removeRow(selectedRow);
-            ((DefaultTableModel) toTable.getModel()).addRow(new Object[]{playerCode, playerName});
+            ((DefaultTableModel) toTable.getModel()).addRow(new Object[]{playerCode, playerName, injured});
         } else {
             JOptionPane.showMessageDialog(null, "No table row selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void populateVenues() {
+    public void populateVenues() {
         venueComboBox.removeAllItems();
         venueLookup.clear();
         List<Venue> venues = VenueStorage.retrieveVenues();
@@ -151,7 +157,7 @@ public class TeamForm extends InputForm {
             JOptionPane.showMessageDialog(null, "Team " + team.getTeamCode() + " saved,",
                     "Success", JOptionPane.INFORMATION_MESSAGE
             );
-            FootballManager.populateLists();
+            FootballManager.initialiseData();
             frame.dispose();
         } else {
             JOptionPane.showMessageDialog(
@@ -171,6 +177,9 @@ public class TeamForm extends InputForm {
         }
         if (teamNameText.getText().contains("#")) {
             return new ValidationObject(false, "Team name cannot contain #.");
+        }
+        if (venueComboBox.getSelectedItem() == null) {
+            return new ValidationObject(false, "Team must have a Venue.");
         }
         return new ValidationObject(true, "");
     }

@@ -1,6 +1,7 @@
 package objects;
 
 import storage.PlayerStorage;
+import storage.VenueStorage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,12 +29,12 @@ public class Team {
         String[] array = teamString.split("#");
 
         List<Player> players = new ArrayList<>();
-        List<String> playerCodes = Arrays.asList(array[2]);
+        List<String> playerCodes = Arrays.asList(array[2].split(","));
         for (String playerCode : playerCodes) {
             players.add(PlayerStorage.getPlayer(playerCode));
         }
 
-        Venue venue = Venue.fromString(array[3]);
+        Venue venue = VenueStorage.getVenue(array[3]);
 
         return new Team(array[0], array[1], players, venue);
     }
@@ -41,12 +42,19 @@ public class Team {
     @Override
     public String toString() {
         List<String> playerCodes = new ArrayList<>();
+        for (Player player : players) {
+            playerCodes.add(player.getPlayerCode());
+        }
         String playerList = String.join(",", playerCodes);
-        return teamName + "#" + teamCode + "#" + playerList + venue.getVenueCode();
+        return teamName + "#" + teamCode + "#" + playerList + "#" + venue.getVenueCode();
     }
 
     private String createTeamCode() {
         return String.valueOf((int) (Math.random() * 900) + 100) + teamName.substring(0, 3).toUpperCase();
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public void addPlayer(Player player) {

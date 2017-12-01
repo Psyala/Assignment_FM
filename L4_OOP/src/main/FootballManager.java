@@ -1,16 +1,12 @@
 package main;
 
 import forms.MainForm;
+import forms.MatchForm;
 import forms.NewLeagueForm;
-import objects.League;
-import objects.Player;
-import objects.Team;
-import objects.Venue;
-import storage.LeagueStorage;
-import storage.PlayerStorage;
-import storage.TeamStorage;
-import storage.VenueStorage;
+import objects.*;
+import storage.*;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,8 +15,10 @@ public class FootballManager {
     public static List<Player> playerList;
     public static List<Team> teamList;
     public static List<Venue> venueList;
+    public static List<Match> matchList;
     public static String leagueName;
     public static League leagueObject;
+    public static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
     private static MainForm mainForm = null;
 
     //Initialises the public static variables for use in the application elsewhere
@@ -30,14 +28,18 @@ public class FootballManager {
         venueList = VenueStorage.retrieveVenues();
         leagueName = LeagueStorage.getLeagueName();
         leagueObject = populateLeagueObject();
+        matchList = MatchStorage.retrieveMatches();
+
         if (mainForm != null) {
             mainForm.populateLeagueStatistics();
+            mainForm.populateMatches();
         }
     }
 
     //Loads the mainform
     public static void load() {
         initialiseData();
+        MatchForm match = new MatchForm(null);
         mainForm = new MainForm();
     }
 

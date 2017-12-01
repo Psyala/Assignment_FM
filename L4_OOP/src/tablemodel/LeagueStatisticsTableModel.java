@@ -30,8 +30,8 @@ public class LeagueStatisticsTableModel extends TableModel {
         int position = 1;
         HashMap<String, League.LeagueTeamInformation> leagueTeamInformationHashMap = league.getLeagueTeamInformation();
 
+        //Puts the HashMap in a TreeMap so that it can be sorted
         TreeMap<String, String> sortedPoints = new TreeMap<>();
-
         for (Map.Entry<String, League.LeagueTeamInformation> entry : leagueTeamInformationHashMap.entrySet()) {
             sortedPoints.put(entry.getValue().getPoints() * -1 + "#" + entry.getKey(), entry.getKey());
         }

@@ -2,6 +2,7 @@ package forms;
 
 import main.FootballManager;
 import tablemodel.LeagueStatisticsTableModel;
+import tablemodel.MatchTableModel;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public class MainForm {
         initialise();
         initialiseComponents();
         manageLeagueButton.addActionListener(e -> new LeagueForm());
-        modifyMatchesButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Not yet implemented.", "Warning", JOptionPane.WARNING_MESSAGE));
+        modifyMatchesButton.addActionListener(e -> new MatchManagement());
     }
 
     private void initialise() {
@@ -44,9 +45,14 @@ public class MainForm {
     private void initialiseComponents() {
         leagueLabel.setText(FootballManager.leagueName);
         populateLeagueStatistics();
+        populateMatches();
     }
 
     public void populateLeagueStatistics() {
         leagueStatusTable.setModel(new LeagueStatisticsTableModel(Arrays.asList(FootballManager.leagueObject)).create());
+    }
+
+    public void populateMatches() {
+        leaugeMatchTable.setModel(new MatchTableModel(FootballManager.matchList).create());
     }
 }

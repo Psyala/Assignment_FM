@@ -46,6 +46,7 @@
                 </constraints>
                 <properties>
                   <font size="16"/>
+                  <toolTipText value="Date of the match."/>
                 </properties>
               </component>
             </children>
@@ -85,7 +86,9 @@
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <toolTipText value="Select the Away Team for the match. Must be different to the Home Team."/>
+                    </properties>
                   </component>
                 </children>
               </grid>
@@ -111,7 +114,9 @@
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <toolTipText value="Select the Home Team for the match. Must be different to the Away Team."/>
+                    </properties>
                   </component>
                 </children>
               </grid>
@@ -131,6 +136,7 @@
                 </constraints>
                 <properties>
                   <text value="Save"/>
+                  <toolTipText value="Save the entered information."/>
                 </properties>
               </component>
               <component id="3bd57" class="javax.swing.JButton" binding="cancelButton">
@@ -139,6 +145,7 @@
                 </constraints>
                 <properties>
                   <text value="Cancel"/>
+                  <toolTipText value="Cancel creation of a new Match."/>
                 </properties>
               </component>
             </children>

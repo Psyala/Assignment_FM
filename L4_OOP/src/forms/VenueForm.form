@@ -54,6 +54,7 @@
                     </constraints>
                     <properties>
                       <font size="16"/>
+                      <toolTipText value="Name of the Venue."/>
                     </properties>
                   </component>
                 </children>
@@ -77,6 +78,7 @@
                     </constraints>
                     <properties>
                       <text value="Save"/>
+                      <toolTipText value="Save the entered information."/>
                     </properties>
                   </component>
                   <component id="77ad9" class="javax.swing.JButton" binding="cancelButton">
@@ -85,6 +87,7 @@
                     </constraints>
                     <properties>
                       <text value="Cancel"/>
+                      <toolTipText value="Cancel creation of a new Venue."/>
                     </properties>
                   </component>
                 </children>

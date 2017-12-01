@@ -46,6 +46,7 @@
                 </constraints>
                 <properties>
                   <font size="16"/>
+                  <toolTipText value="The name you wish your league to have."/>
                 </properties>
               </component>
             </children>
@@ -69,6 +70,7 @@
                 </constraints>
                 <properties>
                   <text value="Start League"/>
+                  <toolTipText value="Click to start managing your League."/>
                 </properties>
               </component>
             </children>

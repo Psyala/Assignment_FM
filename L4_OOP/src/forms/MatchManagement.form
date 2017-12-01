@@ -34,7 +34,9 @@
             <children>
               <component id="1cd3f" class="javax.swing.JTable" binding="matchesTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <toolTipText value="A list of all unresolved matches."/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -52,6 +54,7 @@
                 </constraints>
                 <properties>
                   <text value="New"/>
+                  <toolTipText value="Create a new match between two teams,"/>
                 </properties>
               </component>
               <component id="ed4e" class="javax.swing.JButton" binding="editMatchButton">
@@ -60,6 +63,7 @@
                 </constraints>
                 <properties>
                   <text value="Edit"/>
+                  <toolTipText value="Edit the current selected match in the above table."/>
                 </properties>
               </component>
               <component id="f0562" class="javax.swing.JButton" binding="resolveMatchButton">
@@ -68,6 +72,7 @@
                 </constraints>
                 <properties>
                   <text value="Resolve"/>
+                  <toolTipText value="Resolve the current selected match in the above table."/>
                 </properties>
               </component>
             </children>

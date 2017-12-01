@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="504" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -63,6 +63,7 @@
                     </constraints>
                     <properties>
                       <text value="New"/>
+                      <toolTipText value="Add a new Player."/>
                     </properties>
                   </component>
                   <component id="5294" class="javax.swing.JButton" binding="playersEditButton">
@@ -71,6 +72,7 @@
                     </constraints>
                     <properties>
                       <text value="Edit"/>
+                      <toolTipText value="Edit the selected player in the above table."/>
                     </properties>
                   </component>
                 </children>
@@ -121,6 +123,7 @@
                     </constraints>
                     <properties>
                       <text value="New"/>
+                      <toolTipText value="Add a new Venue."/>
                     </properties>
                   </component>
                   <component id="c4459" class="javax.swing.JButton" binding="venuesEditButton">
@@ -129,6 +132,7 @@
                     </constraints>
                     <properties>
                       <text value="Edit"/>
+                      <toolTipText value="Edit the selected Venue in the above table."/>
                     </properties>
                   </component>
                 </children>
@@ -179,6 +183,7 @@
                     </constraints>
                     <properties>
                       <text value="New"/>
+                      <toolTipText value="Add a new Team."/>
                     </properties>
                   </component>
                   <component id="e0761" class="javax.swing.JButton" binding="teamsEditButton">
@@ -187,6 +192,7 @@
                     </constraints>
                     <properties>
                       <text value="Edit"/>
+                      <toolTipText value="Edit the selected Team in the above table."/>
                     </properties>
                   </component>
                 </children>

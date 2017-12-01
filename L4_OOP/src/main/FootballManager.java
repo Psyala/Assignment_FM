@@ -1,7 +1,6 @@
 package main;
 
 import forms.MainForm;
-import forms.MatchForm;
 import forms.NewLeagueForm;
 import objects.*;
 import storage.*;
@@ -39,7 +38,6 @@ public class FootballManager {
     //Loads the mainform
     public static void load() {
         initialiseData();
-        MatchForm match = new MatchForm(null);
         mainForm = new MainForm();
     }
 
